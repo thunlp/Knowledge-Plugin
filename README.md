@@ -48,7 +48,7 @@ In the following plug-and-play stages, the mapping networks are plugged to these
 
 We freeze the PLM and train the mapping network by Mention-Masked Language Modeling (MMLM), which is called general map-tuning in the paper. After general map-tuning, the mapping network we get can be used in general plug-and-play injection, or we can fine-tune the PLM with the mapping network on downstream tasks.
 
-We use the wikipedia corpus as the corpus for general map-tuning with varying dropout probabilities.
+We use the wikipedia corpus as the training data for general map-tuning with varying dropout probabilities (Empirically, 0.25 is a good choice.).
 
 ```bash
 python MapTuning_Wikipedia.py --config ../mapping_networks/Wikipedia/NoDropout/default.config --gpu 0
