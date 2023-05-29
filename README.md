@@ -28,7 +28,7 @@ mv dataset/test test
 
 ## Train Downstream (Base) Models
 
-We use $\text{BASE}_\text{base}$ as the backbone PLM in the experiments, and we consider four training methods for the adaptation on downstream tasks. We first train the downstream (base) models on four datasets using the four training methods. Note that `BERT` in the class/file name refers to the vanilla full-model fine-tuning.
+We use $\text{BERT}_\text{base}$ as the backbone PLM in the experiments, and we consider four training methods for the adaptation on downstream tasks. We first train the downstream (base) models on four datasets using the four training methods. Note that `BERT` in the class/file name refers to the vanilla full-model fine-tuning.
 
 ```bash
 cd code
