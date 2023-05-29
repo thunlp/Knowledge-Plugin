@@ -1,4 +1,4 @@
-# Plug-and-Play Knowledge Injection for Pre-trained Language Models
+# Knowledge Plugin
 
 Source codes and datasets for *Plug-and-Play Knowledge Injection for Pre-trained Language Models*.
 
