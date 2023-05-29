@@ -122,3 +122,16 @@ python FewRel_submission.py --config config/FewRel/Plug_General/BERT_5way1shot.c
 ```
 
 We put the submission file of general plug-and-play injection (to BERT) in `output/FewRel/Plug_General/BERT_5way1shot`.
+
+## Cite
+
+If you use the code, please cite this paper:
+
+```
+@inproceedings{zhang2023plug,
+  title={Plug-and-Play Knowledge Injection for Pre-trained Language Models},
+  author={Zhang, Zhengyan and Zeng, Zhiyuan and Lin, Yankai and Wang, Huadong and Ye, Deming and Xiao, Chaojun and Han, Xu and Liu, Zhiyuan and Li, Peng and Sun, Maosong and Zhou, Jie},
+  booktitle={Proceedings of ACL},
+  year={2023}
+}
+```
