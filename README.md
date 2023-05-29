@@ -115,7 +115,7 @@ You can download our checkpoints.
 
 ## FewRel submission
 
-As the test set (`datasets/FewRel/test_wiki.json`) of FewRel is not publicly released, you may have to contact the [authors](https://github.com/thunlp/FewRel) for the test set if you want to run our code on the test set by yourself. We recommende submitting the results to the [official leaderboard](https://codalab.lisn.upsaclay.fr/competitions/7395). The input data is [here](https://worksheets.codalab.org/worksheets/0x224557d3a319469c82b0eb2550a2219e) and you can download the data to `datasets/FewRel/submission`. You can get the submission file by `FewRel_submission.py` and here is one example command.
+We recommende submitting the results to the [official leaderboard](https://codalab.lisn.upsaclay.fr/competitions/7395). The input data is [here](https://worksheets.codalab.org/worksheets/0x224557d3a319469c82b0eb2550a2219e) and you can download the data to `datasets/FewRel/submission`. You can get the submission file by `FewRel_submission.py` and here is one example command.
 
 ```bash
 python FewRel_submission.py --config config/FewRel/Plug_General/BERT_5way1shot.config --gpu 0 --checkpoint ../output/FewRel/BaseModel/BERT_5way1shot/ckpt.bin --data_path ../datasets/FewRel/submission --data_name test_wiki_input
