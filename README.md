@@ -1,15 +1,18 @@
 # Knowledge Plugin
 
-Source codes and datasets for *Plug-and-Play Knowledge Injection for Pre-trained Language Models*.
-
-We will update all datasets and checkpoints in this week.
+Source codes and datasets for *[Plug-and-Play Knowledge Injection for Pre-trained Language Models](https://arxiv.org/abs/2305.17691)*.
 
 ## Preliminary
 
 ### Prepare Datasets
 
 ```bash
-# TODO: datasets/{FewRel,Wiki80,WikiET,wiki20m,EntityQuestions}
+# TODO: datasets/{FewRel, Wiki80, WikiET, wiki20m, EntityQuestions}
+
+# For the training and dev set of FewRel
+cd datasets/FewRel
+wget https://raw.githubusercontent.com/thunlp/FewRel/master/data/train_wiki.json
+wget https://raw.githubusercontent.com/thunlp/FewRel/master/data/val_wiki.json
 
 # For EntityQuestions
 cd datasets/EntityQuestions
