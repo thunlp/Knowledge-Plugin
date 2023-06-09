@@ -7,26 +7,48 @@ Source codes and datasets for *[Plug-and-Play Knowledge Injection for Pre-traine
 ### Prepare Datasets
 
 ```bash
-# TODO: datasets/{FewRel, Wiki80, WikiET, wiki20m, EntityQuestions}
+wget https://thunlp.oss-cn-qingdao.aliyuncs.com/zzy/PlugDataset.tar
+tar -xvf PlugDataset.tar
+rm -r PlugDataset.tar
 
 # For the training and dev set of FewRel
 cd datasets/FewRel
 wget https://raw.githubusercontent.com/thunlp/FewRel/master/data/train_wiki.json
 wget https://raw.githubusercontent.com/thunlp/FewRel/master/data/val_wiki.json
+cd ../..
 
 # For EntityQuestions
+mkdir datasets/EntityQuestions
 cd datasets/EntityQuestions
 wget https://nlp.cs.princeton.edu/projects/entity-questions/dataset.zip
 unzip dataset.zip
 mv dataset/train train
 mv dataset/dev dev
 mv dataset/test test
+rm -r dataset.zip
+rm -rf dataset
+wget https://raw.githubusercontent.com/princeton-nlp/EntityQuestions/master/relation_query_templates.json
+cd ../..
 ```
 
 ### Prepare Knowledge Embedding
 
 ```bash
-# TODO: knowledge_embedding
+wget https://thunlp.oss-cn-qingdao.aliyuncs.com/zzy/knowledge_embedding.tar
+tar -xvf knowledge_embedding.tar
+rm -r knowledge_embedding.tar
+mkdir knowledge_embedding
+mv wikipedia knowledge_embedding/wikipedia
+```
+
+### Checkpoints
+
+You can download all the checkpoints of models trained by us.
+
+```bash
+wget https://thunlp.oss-cn-qingdao.aliyuncs.com/zzy/PlugAndPlay_ckpt.tar
+tar -xvf PlugAndPlay_ckpt.tar
+rm -r PlugAndPlay_ckpt.tar
 ```
 
 ## Train Downstream (Base) Models
@@ -41,11 +63,7 @@ bash run_WikiET_BaseModel.sh
 bash run_EntityQuestions_BaseModel.sh
 ```
 
-In the following plug-and-play stages, the mapping networks are plugged to these downstream (base) models. You can download our checkpoints.
-
-```bash
-# TODO: {FewRel, Wiki80, WikiET, EntityQuestions}/BaseModel
-```
+In the following plug-and-play stages, the mapping networks are plugged to these downstream (base) models. You can download our checkpoints. If you have already downloaded our checkpoints, then the checkpoints of downstream (base) models are in `output/{FewRel, Wiki80, WikiET, EntityQuestions}/BaseModel`.
 
 ## Map-Tuning on [Wikipedia Corpus] / [Downstream Data]
 
@@ -62,7 +80,7 @@ python MapTuning_Wikipedia.py --config ../mapping_networks/Wikipedia/Dropout35/d
 python MapTuning_Wikipedia.py --config ../mapping_networks/Wikipedia/Dropout45/default.config --gpu 0
 ```
 
-We also train mapping networks on the downstream data. Note that these mapping networks are NOT used in plug-and-play injection.
+We also train mapping networks on the downstream data. Note that these mapping networks are NOT used in plug-and-play injection and they are used in the experiments of fine-tuning with mapping networks.
 
 ```bash
 python MapTuning_FewRel.py          --config ../mapping_networks/Downstream/FewRel/default.config          --gpu 0
@@ -71,10 +89,12 @@ python MapTuning_WikiET.py          --config ../mapping_networks/Downstream/Wiki
 python MapTuning_EntityQuestions.py --config ../mapping_networks/Downstream/EntityQuestions/default.config --gpu 0
 ```
 
-You can also download our checkpoints.
+You can also download our checkpoints of mapping networks.
 
 ```bash
-# TODO: mapping_networks
+wget https://thunlp.oss-cn-qingdao.aliyuncs.com/zzy/mapping_networks.tar
+tar -xvf mapping_networks.tar
+rm -r mapping_networks.tar
 ```
 
 ## General Plug-and-Play Injection
@@ -110,15 +130,11 @@ bash run_WikiET_FineTuning.sh
 bash run_EntityQuestions_FineTuning.sh
 ```
 
-You can download our checkpoints.
-
-```bash
-# TODO: {FewRel, Wiki80, WikiET, EntityQuestions}/FineTuning
-```
+If you have already downloaded our checkpoints, then the checkpoints of models finetuned with mapping networks are in `output/{FewRel, Wiki80, WikiET, EntityQuestions}/FineTuning`.
 
 ## FewRel submission
 
-We recommende submitting the results to the [official leaderboard](https://codalab.lisn.upsaclay.fr/competitions/7395). The input data is [here](https://worksheets.codalab.org/worksheets/0x224557d3a319469c82b0eb2550a2219e) and you can download the data to `datasets/FewRel/submission`. You can get the submission file by `FewRel_submission.py` and here is one example command.
+We recommende submitting the results to the [official leaderboard](https://codalab.lisn.upsaclay.fr/competitions/7395). The input data is [here](https://worksheets.codalab.org/worksheets/0x224557d3a319469c82b0eb2550a2219e) and we downloaded the data to `datasets/FewRel/submission`. You can get the submission file by `FewRel_submission.py` and here is one example command.
 
 ```bash
 python FewRel_submission.py --config config/FewRel/Plug_General/BERT_5way1shot.config --gpu 0 --checkpoint ../output/FewRel/BaseModel/BERT_5way1shot/ckpt.bin --data_path ../datasets/FewRel/submission --data_name test_wiki_input
