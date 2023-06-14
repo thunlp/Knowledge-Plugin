@@ -1,6 +1,6 @@
 # Knowledge Plugin
 
-Source codes and datasets for *[Plug-and-Play Knowledge Injection for Pre-trained Language Models](https://arxiv.org/abs/2305.17691)*.
+Source codes and datasets for *[Plug-and-Play Knowledge Injection for Pre-trained Language Models](https://arxiv.org/abs/2305.17691)* (ACL 2023).
 
 ## Preliminary
 
