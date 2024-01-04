@@ -170,7 +170,7 @@ bash run_EntityQuestions_FineTuning.sh
 
 If you have already downloaded our checkpoints, then the checkpoints of models finetuned with mapping networks are in `output/{FewRel, Wiki80, WikiET, EntityQuestions}/FineTuning`.
 
-## FewRel submission
+## FewRel Submission
 
 We recommende submitting the results to the [official leaderboard](https://codalab.lisn.upsaclay.fr/competitions/7395). The input data is [here](https://worksheets.codalab.org/worksheets/0x224557d3a319469c82b0eb2550a2219e) and we downloaded the data to `datasets/FewRel/submission`. You can get the submission file by `FewRel_submission.py` and here is one example command.
 
@@ -179,6 +179,25 @@ python FewRel_submission.py --config config/FewRel/Plug_General/BERT_5way1shot.c
 ```
 
 We put the submission file of general plug-and-play injection (to BERT) in `output/FewRel/Plug_General/BERT_5way1shot`.
+
+## TransR Version
+
+To use TransR knowledge embeddings, please first download the embeddings:
+
+```bash
+wget https://thunlp.oss-cn-qingdao.aliyuncs.com/zzy/transr.npy
+mv transr.npy knowledge_embedding/wikipedia/transr.npy
+```
+
+Then, in config files, change `ke_path = ../knowledge_embedding/wikipedia/transe.npy` to `ke_path = ../knowledge_embedding/wikipedia/transr.npy`. We also need to change `input_dim = 128` to `input_dim = 228`. All the running commands are the same as before.
+
+We also provide our checkpoints of mapping networks for TransR knowledge embeddings:
+
+```bash
+wget https://thunlp.oss-cn-qingdao.aliyuncs.com/zzy/mapping_networks_TransR.tar
+tar -xvf mapping_networks_TransR.tar
+rm -r mapping_networks_TransR.tar
+```
 
 ## Cite
 
